@@ -14,7 +14,8 @@
   min-inline-size: 320px;
   max-inline-size: 1440px;
   min-block-size: 100dvb;
-  font-family: var(--main-font), monospace, sans-serif;
+  margin: auto;
+  font-family: var(--main-font), sans-serif;
   font-variation-settings: 'wght' var(--main-text-weight);
   font-size: 18px;
   background-image: var(--main-background);
@@ -24,13 +25,13 @@
 }
 
 .header-logo {
-  font-family: var(--accent-font), monospace, sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: var(--header-font-size);
   margin-bottom: 20px;
 }
 
 .header-title {
-  font-family: var(--accent-font), monospace, sans-serif;
+  font-family: var(--accent-font), fantasy;
   text-transform: uppercase;
   font-size: var(--subheader-font-size);
 }
@@ -52,41 +53,24 @@
 }
 
 .main__article {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-flow: row;
+  display: flex;
+  flex-direction: column;
   border: solid 2px var(--main-color);
   margin: 0 auto 50px;
   background-color: var(--background-color);
 }
 
-.buttons-area {
-  display: flex;
-  justify-self: right;
-  align-items: center;
-  min-block-size: 38px;
-  grid-column: 2 / -1;
-  margin: 0 25px 25px;
-}
-
-.article-header,
-.article-text-description,
-.article-text-memories,
-.article-photo-wrapper {
-  grid-column: 1 / span 2;
-}
-
 .article-photo-wrapper {
   position: relative;
-  margin: 0 0 27px;
-  padding-bottom: 2px;
 }
 
 .article-photo-label {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  font-family: var(--accent-font);
+  right: 25px;
+  top: 25px;
+  opacity: 0.5;
+  font-family: var(--accent-font), fantasy;
+  font-size: 14px;
   text-shadow:
     -1px 0 var(--text-outline-color),
     0 1px var(--text-outline-color),
@@ -108,19 +92,19 @@
 }
 
 .article-header {
-  min-block-size: 31px;
   font-variation-settings: 'wght' var(--header-text-weight);
   font-size: 18px;
-  padding: 4px;
-  margin-inline-start: 0.3em;
+  padding: 4px 10px;
+  border-bottom: solid 2px var(--main-color);
 }
 
-.article-text-description {
-  margin: 0 25px 27px;
-}
-
-.article-text-memories {
-  margin: 0 25px 25px;
+.article-text-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 21px;
+  gap: 25px;
+  padding: 27px 25px;
+  border-top: solid 2px var(--main-color);
 }
 
 .article-photo {
@@ -130,36 +114,44 @@
   inline-size: calc(var(--main-width-size) - 4px);
 }
 
-.picture-me {
+.picture-saturate-filter {
   filter: saturate(130%);
 }
 
-.picture-paws {
+.picture-invert-filter {
   filter: invert(0.8);
 }
 
-.picture-racoon-bay {
+.picture-contrast-filter {
   filter: contrast(150%);
 }
 
-.picture-night-bridge {
+.picture-saturate-contrast-blur-filter {
   filter: saturate(180%) contrast(130%) blur(0.1rem);
 }
 
-.picture-cat-laying {
+.picture-contrast-grayscale-filter {
   filter: contrast(150%) grayscale(0.7);
 }
 
-.picture-cat-above {
+.picture-hue-rotate-filter {
   filter: hue-rotate(-90deg);
 }
 
-.picture-cappucino {
+.picture-sepia-filter {
   filter: sepia(60%);
 }
 
-.picture-night {
+.picture-contrast-saturate-filter {
   filter: contrast(130%) saturate(140%);
+}
+
+.buttons-area {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  min-block-size: 38px;
+  margin: 0 25px 25px;
 }
 
 .card__like-button {
@@ -167,7 +159,7 @@
   min-inline-size: 130px;
   border: solid 2px var(--main-color);
   box-shadow: none;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), fantasy;
   block-size: 38px;
   padding: 0;
   background-color: var(--background-color);
@@ -203,21 +195,23 @@
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: space-around;
+  column-gap: 8px;
+  justify-content: space-between;
   min-inline-size: 339px;
-  padding: 10px 15px;
+  margin: 0;
+  padding: 10px 20px;
   border: solid 2px var(--main-color);
   box-shadow: none;
   block-size: 55px;
   background-color: var(--background-color);
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), fantasy;
   font-size: 14px;
-  line-height: 0.9;
+  line-height: 21px;
 }
 
 .floppy-icon {
-  width: 28px;
-  height: 28px;
+  width: 21px;
+  height: 21px;
   color: var(--background-color);
   z-index: 1;
   mix-blend-mode: difference;
@@ -225,13 +219,20 @@
 
 #save-dialog {
   inline-size: 352px;
-  block-size: 195px;
   padding: 0;
 }
 
-dialog[opened] #save-dialog {
+dialog[open] #save-dialog {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dialog__floppy-icon {
@@ -248,12 +249,12 @@ dialog[opened] #save-dialog {
   height: 39px;
 }
 
-.button__save-text {
+.dialog__text {
   display: inline;
   text-transform: uppercase;
   font-size: 14px;
   line-height: 1.5;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), fantasy;
   color: var(--background-color);
   z-index: 1;
   mix-blend-mode: difference;
@@ -262,11 +263,12 @@ dialog[opened] #save-dialog {
 .ok-button {
   position: relative;
   text-transform: uppercase;
-  font-family: var(--accent-font);
-  min-inline-size: 289px;
+  font-family: var(--accent-font), fantasy;
+  inline-size: 289px;
+  align-self: center;
   border: solid 2px var(--main-color);
   block-size: 38px;
-  margin: 0 28px 30.5px;
+  margin: 0 auto 30.5px;
   font-size: 14px;
   background-color: var(--background-color);
 }
@@ -277,42 +279,88 @@ dialog::backdrop {
 
 @media (width <= 375px) {
 
+  .page,
+  .container-width,
+  .header-container,
+  .button-save {
+    min-inline-size: 320px;
+    inline-size: var(--main-width-size);
+  }
+
+  .article-photo,
+  .article-photo-wrapper,
+  .article-text-container,
+  .article-header {
+    min-inline-size: 316px;
+    inline-size: calc(var(--main-width-size) - 4px);
+  }
+
+  .page {
+    margin: 0;
+    overflow-x: scroll;
+  }
+
+  .main__article {
+    margin: 0 0 50px;
+  }
+
   .button-save-memory {
-    block-size: 84px;
     flex-direction: column;
+    justify-content: space-between;
+    block-size: 84px;
     min-inline-size: 310px;
-    margin: 0 34.5px;
+    line-height: 18px;
+    margin: 0;
+    padding: 15px;
   }
 
   .article-header {
-    max-block-size: 52px;
-    padding: 5px 4px;
+    padding: 5px 10px;
+  }
+
+  .article-text-container {
+    line-height: 21px;
+    font-size: 18px;
+    padding: 25px 29px 25px 25px;
+    gap: 27px;
+  }
+
+  .card__icon-button {
+    margin: 0 4px;
   }
 
   #save-dialog {
+    inline-size: 341px;
     min-inline-size: 341px;
-    block-size: 195px;
   }
 
   .dialog__floppy-icon {
-    margin: 30px 40px;
+    margin: 30px 0;
     column-gap: 16px;
+  }
+
+  .dialog-container {
+    margin: 0 40px;
   }
 
   .button-save {
     margin: 0 auto 100px;
   }
 
+  .floppy-icon {
+    width: 28px;
+    height: 28px;
+  }
+
   .ok-button {
-    min-inline-size: 257px;
-    margin: 0 38px;
+    inline-size: 257px;
     padding: 0;
     border: solid 2px var(--main-color);
     font-size: 14px;
     line-height: 0.9;
   }
 
-  dialog[opened] #save-dialog {
+  dialog[open] #save-dialog {
     display: flex;
     flex-direction: column;
   }

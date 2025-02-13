@@ -13,7 +13,7 @@
 @keyframes scaling {
 
   to {
-    transform: scale(1.25);
+    transform: scale3d(1.25, 1.25, 1.25);
   }
 }
 
@@ -22,34 +22,6 @@
   to {
     fill: var(--fill-color);
   }
-}
-
-.card__like-button:focus {
-  outline: none;
-}
-
-.card__like-button:focus-visible {
-  box-shadow: 2px 2px 0 var(--main-color);
-  transition: box-shadow 0.3s ease;
-}
-
-.card__like-button::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: block;
-  background-color: var(--main-color);
-  z-index: 0;
-  block-size: 100%;
-  inline-size: 0%;
-  transition: inline-size 0.5s ease-in-out;
-}
-
-.card__like-button:is(:hover)::after {
-  background-color: var(--main-color);
-  inline-size: 100%;
-  transition: inline-size 0.5s ease-in-out;
 }
 
 .card__icon-button:focus {
@@ -113,22 +85,23 @@
 
 .like-icon.is-liked .heart {
   animation: scaling 0.3s 0.1s ease-in;
+  transform-origin: 18px 19.5px;
 }
 
 .like-icon.is-liked .sparks {
   animation: sparkling 0.3s ease-in;
 }
 
-.button-save-memory:focus {
+.button-effects:focus {
   outline: none;
 }
 
-.button-save-memory:focus-visible {
+.button-effects:focus-visible {
   box-shadow: 2px 2px 0 var(--main-color);
   transition: box-shadow 0.3s ease;
 }
 
-.button-save-memory::after {
+.button-effects::after {
   content: '';
   position: absolute;
   left: 0;
@@ -141,26 +114,7 @@
   transition: inline-size 0.5s ease-in-out;
 }
 
-.button-save-memory:is(:hover)::after {
-  background-color: var(--main-color);
-  inline-size: 100%;
-  transition: inline-size 0.5s ease-in-out;
-}
-
-.ok-button::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: block;
-  background-color: var(--main-color);
-  z-index: 0;
-  block-size: 100%;
-  inline-size: 0%;
-  transition: inline-size 0.5s ease-in-out;
-}
-
-.ok-button:is(:hover)::after {
+.button-effects:is(:hover)::after {
   background-color: var(--main-color);
   inline-size: 100%;
   transition: inline-size 0.5s ease-in-out;
