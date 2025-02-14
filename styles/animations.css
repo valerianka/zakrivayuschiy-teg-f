@@ -55,7 +55,7 @@
 
 .contour {
   fill: var(--main-color);
-  transition: fill 0.1s ease-in;
+  transition: fill 0.1s linear;
 }
 
 .like-icon:is(:active) .core {
@@ -70,17 +70,17 @@
 
 .like-icon.is-liked .core {
   fill: var(--fill-color);
-  transition: fill 0.3s ease-in;
+  transition: fill 0.3s;
 }
 
 .like-icon.is-liked .main-body {
   fill: var(--fill-color);
-  transition: fill 0.3s 0.05s ease-in;
+  transition: fill 0.3s 0.05s;
 }
 
 .like-icon.is-liked .contour {
   fill: var(--fill-color);
-  transition: fill 0.3s 0.06s ease-in;
+  transition: fill 0.3s 0.06s;
 }
 
 .like-icon.is-liked .heart {
@@ -89,7 +89,7 @@
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparkling 0.3s ease-in;
+  animation: sparkling 0.3s 0.3s ease-in;
 }
 
 .button-effects:focus {
